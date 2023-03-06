@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Smash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="">
+    <meta property="og:image" content="https://mmmavis.github.io/smash/favicon-on-white.png">
+    <meta property="og:image:width" content="360" />
+    <meta property="og:image:height" content="360" />
+    <meta property="og:image:type" content="image/png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="360x360" href="favicon-on-white.png">
+    <link rel="icon" type="image/png" sizes="90x90" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Climate+Crisis&family=Playfair+Display&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="style.less" />
+    <script type="text/javascript" src="lib/less.min.js" ></script>
+    <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="lib/handlebars-v4.0.11.js"></script>
+    <script type="text/javascript" src="lib/moment.js"></script>
+
+    <script id="note-template" type="text/x-handlebars-template">
+      <div class="note{{#if imgSrc}} has-media{{/if}}" data-id="{{id}}" id="{{id}}">
+        {{#if imgSrcIsVideo}}
+          <video src="{{imgSrc}}" controls preload="metadata">
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+        {{else if imgSrcIsWebpage}}
+          <a href="{{imgSrc}}" target="_blank" class="see-link">
+            (see link)
+          </a>
+        {{else if imgSrc}}
+          <div class="img-container">
+            <a href="{{imgSrc}}" target="_blank" title="click to see full size">
+              <img src="{{imgSrc}}">
+              <div class="overlay">click to see full size</div>
+            </a>
+          </div>
+        {{/if}}
+        <div class="content">
+          <p class="message">{{{message}}}</p>
+          <div class="submitter">
+            <div>— {{submitter}}</div>
+            <div><small>({{localTime timestamp}})</small></div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="new-note-template" type="text/x-handlebars-template">
+      <div id="new-note" class="">
+        <form id="new-note-form">
+          <fieldset>
+            <textarea name="message" type="text" maxlength=200 placeholder="Message (max. 200 characters)" required></textarea>
+          </fieldset>
+          <fieldset>
+            <input name="imgSrc" type="text" placeholder="Image url (url should include file extension)" />
+            <small>
+              [Tip] Find the image you want online, right click, select "copy image location", then paste the url here.
+              Giphy tutorial see <a href="giphy-tutorial.gif">here</a>
+            </small>
+          </fieldset>
+          <fieldset>
+            <input name="submitter" type="text" placeholder="Your name" required />
+          </fieldset>
+          <fieldset>
+            <button type="submit">SEND</button>
+          </fieldset>
+        </form>
+      </div>
+    </script>
+
+  </head>
+  <body>
+    <div id="outer-wrapper">
+      <!-- <a href="https://www.freepik.com/free-photos-vectors" style="font-size: 8px; color: #d3d0d0; text-decoration: none;">
+        vector created by pikisuperstar - www.freepik.com
+      </a> -->
+        <div id="inner-wrapper">
+          <div id="banner"></div>
+          <div id="grid">
+            <div class="grid-item" data-character="Pac Man"> </div>
+            <div class="grid-item" data-character="Mega Man"> </div>
+            <div class="grid-item" data-character="King Dedede"> </div>
+            <div class="grid-item" data-character="Isabelle"> </div>
+            <div class="grid-item" data-character="Mario"> </div>
+            <div class="grid-item" data-character="Fox"> </div>
+            <div class="grid-item" data-character="Yoshi"> </div>
+            <div class="grid-item" data-character="Jigglypuff"> </div>
+            <div class="grid-item" data-character="Sonic"> </div>
+            <div class="grid-item" data-character="Luigi"> </div>
+            <div class="grid-item" data-character="Ken"> </div>
+            <div class="grid-item" data-character="Pikachu"> </div>
+            <div class="grid-item" data-character="Wii Fit Trainer"> </div>
+            <div class="grid-item" data-character="Villager"> </div>
+            <div class="grid-item" data-character="Bowser"> </div>
+          </div>
+        </div>
+    </div>
+    <div id="page-overlay">
+      <div id="modal" data-character-selected="" data-modal-type="new">
+        <a href="" class="btn-close" aria-hidden="true">&times;</a>
+        <div id="new-form-wrapper">
+          <h2>You've selected <span id="character-selected"></span></h2>
+        </div>
+        <div id="message-wrapper">
+        </div>
+      </div>
+    </div>
+    <div id="loading-screen">
+      <div class="logo"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <!-- Character Images from https://www.smashbros.com -->
+  </body>
+</html>

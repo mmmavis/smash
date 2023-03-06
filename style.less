@@ -1,0 +1,538 @@
+@border-radius: 3px;
+// @bg-color: #a88beb;
+// @bg-gradient: linear-gradient(0deg, #f8ceec 0%, #8e6eda 70%);
+@bg-color: black;
+@bg-gradient: none;
+@submit-btn-bg: black;
+@submit-btn-bg-active: #008ef9;
+@note-text-color: #000000;
+@submitter-text-color: #000000;
+@link-color: #a88beb;
+@link-color-active: #6a3ada;
+
+@note-side-margin: 50px;
+@form-field-border-color: #555555;
+@form-text-color: @note-text-color;
+
+@new-note-margin-right-desktop: 0;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: normal x-small verdana,arial,helvetica,sans-serif;
+  font-family: 'Cabin', sans-serif;
+  margin: 0;
+  font-size: 16px;
+  background-color: @bg-color;
+  background-image: @bg-gradient;
+  overflow-x: hidden;
+
+  // @media (min-width: 768px) {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+  // }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+video,
+img {
+  max-width: 100%;
+}
+
+fieldset {
+  margin: 0 0 18px 0;
+  padding: 0;
+  border: none;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+input,
+textarea {
+  padding: 5px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid @form-field-border-color;
+  border-radius: @border-radius;
+  font-family: 'Playfair Display', serif;
+  font-size: inherit;
+  color: @form-text-color;
+
+  &::placeholder {
+    font: normal x-small verdana,arial,helvetica,sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  margin: 0;
+  padding: 5px;
+  margin: 5px;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+a {
+  color: @link-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: @link-color-active;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+#loading-screen {
+  &:before {
+    content: "";
+    background: rgba(255, 255, 255, 1);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+  }
+
+  .logo {
+    @animation: fadeinout 3s linear forwards;
+
+    background-image: url(assets/Super-Smash-Bros.svg);
+    background-size: 80vw auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 100000000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    -webkit-animation: @animation;
+    animation: @animation;
+
+    @keyframes fadeinout {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity:0;
+        background-size: 50vw auto;
+      }
+    }
+  }
+}
+
+#page-overlay {
+  display: none;
+
+  &.modal-opened {
+    display: block;
+  }
+
+  &:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  #modal {
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -20%);
+    z-index: 10000;
+    width: 90vw;
+    max-width: 500px;
+    padding: 30px 40px 40px 40px;
+    background-size: 150px auto;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+
+    @media (min-width: 768px) {
+      width: 50vw;
+    }
+
+    .btn-close {
+      color: #aaaaaa;
+      font-size: 50px;
+      text-decoration: none;
+      position: absolute;
+      right: 15px;
+      top: -10px;
+
+      &:hover {
+        color: #777777;
+      }
+    }
+  }
+}
+
+.modal-opened {
+  #page-overlay {
+    display: block;
+  }
+}
+
+
+#outer-wrapper {
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 1200px) {
+  }
+}
+
+#inner-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#banner {
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-image: url(assets/banner.png);
+  background-size: contain;
+}
+
+#grid {
+  @aspect-ratio: calc(6/4);
+
+  width: 100%;
+  height: calc(100% / @aspect-ratio);
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+
+  .grid-item {
+    @bg-gradient: linear-gradient(20deg, #37a7ea 0%, #97d1f2 70%);
+    @border-width: 8px;
+    @border-style: solid;
+    @claimed-red: #ec2f25;
+    @hover-yellow: #ffd600;
+
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100%;
+    filter: grayscale(1);
+    position: relative;
+
+    &:hover {
+      filter: grayscale(0);
+      cursor: pointer;
+      border: @border-width @border-style @hover-yellow;
+    }
+
+    &:after {
+      display: block;
+      width: 100%;
+      content: attr(data-character);
+      color: white;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: bold;
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
+    }
+
+    &.claimed {
+      filter: grayscale(0);
+      border: @border-width @border-style @claimed-red;
+
+      &:before {
+        content: "Player " attr(data-player-number);
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+        background: @claimed-red;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 2px 4px 6px 8px;
+
+        @media (min-width: 768px) {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &:nth-child(1) {
+      background-image: url(assets/characters/Pac-Man.png), @bg-gradient;
+    }
+
+    &:nth-child(2) {
+      background-image: url(assets/characters/Mega-Man.png), @bg-gradient;
+    }
+
+    &:nth-child(3) {
+      background-image: url(assets/characters/King-Dedede.png), @bg-gradient;
+    }
+
+    &:nth-child(4) {
+      background-image: url(assets/characters/Isabelle.png), @bg-gradient;
+      background-position: center 25%;
+    }
+
+    &:nth-child(5) {
+      background-image: url(assets/characters/Mario.png), @bg-gradient;
+      background-position: center 15%;
+    }
+
+    &:nth-child(6) {
+      background-image: url(assets/characters/Fox.png), @bg-gradient;
+    }
+
+    &:nth-child(7) {
+      background-image: url(assets/characters/Yoshi.png), @bg-gradient;
+    }
+
+    &:nth-child(8) {
+      background-image: url(assets/characters/Jigglypuff.png), @bg-gradient;
+      background-position: center;
+    }
+
+    &:nth-child(9) {
+      background-image: url(assets/characters/Sonic.png), @bg-gradient;
+    }
+
+    &:nth-child(10) {
+      background-image: url(assets/characters/Luigi.png), @bg-gradient;
+    }
+
+    &:nth-child(11) {
+      background-image: url(assets/characters/Ken.png), @bg-gradient;
+    }
+
+    &:nth-child(12) {
+      background-image: url(assets/characters/Pikachu.png), @bg-gradient;
+      background-position: center 30%;
+    }
+
+    &:nth-child(13) {
+      background-image: url(assets/characters/Wii-Fit-Trainer.png), @bg-gradient;
+    }
+
+    &:nth-child(14) {
+      background-image: url(assets/characters/Villager.png), @bg-gradient;
+    }
+
+    &:nth-child(15) {
+      background-image: url(assets/characters/Bowser.png), @bg-gradient;
+      background-position: center 20%;
+    }
+  }
+}
+
+#new-form-wrapper {
+  h2 {
+    margin: 0 0 15px 0;
+
+    img {
+      width: 50px;
+      height: auto;
+      display: inline-block;
+      margin: 0 10px;
+    }
+  }
+}
+
+#new-note {
+  text-align: left;
+  height: auto;
+  margin-right: @new-note-margin-right-desktop;
+
+  textarea {
+    height: 100px;
+  }
+}
+
+#new-note-form {
+  margin: 0 auto;
+  width: 100%;
+  background: transparent;
+
+  input,
+  textarea {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  input[type="radio"] {
+    width: auto;
+  }
+
+  input[name="imgSrc"] {
+    margin-bottom: 0;
+
+    + small {
+      color: #333;
+      display: block;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+  }
+
+  button[type="submit"] {
+    background-color: @submit-btn-bg;
+    color: white;
+    width: 100%;
+    margin: 5px 0 0;
+    padding: 10px;
+
+    &:hover {
+      background-color: @submit-btn-bg-active;
+    }
+  }
+}
+
+.note {
+  @side-padding: 30px;
+  @side-margin: 15px;
+  @max-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  color: @note-text-color;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+
+  min-height: 320px;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    min-height: 360px;
+  }
+
+  &.has-media {
+    @image-max-height: calc(@max-height - @side-padding*2);
+
+    .img-container {
+      margin: 20px auto 0 auto;
+      position: relative;
+      max-width: 200px;
+
+      &:hover {
+        .overlay {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+
+      img {
+        max-height: 100%;
+        height: auto;
+        width: 100%;
+      }
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease;
+      background: fade(black, 70%);
+      color: white;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .img-container {
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      img {
+        border-radius: @border-radius;
+        max-width: 100%;
+        height: 100%;
+        transition: all .3s ease-in-out;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .message {
+    line-height: 1.3;
+  }
+
+  .submitter {
+    text-align: right;
+  }
+}
