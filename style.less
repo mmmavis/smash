@@ -3,8 +3,8 @@
 // @bg-gradient: linear-gradient(0deg, #f8ceec 0%, #8e6eda 70%);
 @bg-color: black;
 @bg-gradient: none;
-@submit-btn-bg: black;
-@submit-btn-bg-active: #008ef9;
+@submit-btn-bg: #008ef9;
+@submit-btn-bg-active: #0c5f9e;
 @note-text-color: #000000;
 @submitter-text-color: #000000;
 @link-color: #a88beb;
@@ -122,7 +122,7 @@ a {
   .logo {
     @animation: fadeinout 3s linear forwards;
 
-    background-image: url(assets/Super-Smash-Bros.svg);
+    background-image: url(assets/Super-Smash-Bros-Farewell.svg);
     background-size: 80vw auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -160,7 +160,7 @@ a {
 
   &:before {
     content: "";
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(9, 70, 123, 0.9);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -176,11 +176,11 @@ a {
     position: fixed;
     left: 50%;
     top: 20%;
-    transform: translate(-50%, -20%);
+    transform: translate(-50%, -10%);
     z-index: 10000;
     width: 90vw;
     max-width: 500px;
-    padding: 30px 40px 40px 40px;
+    padding: 60px 40px 40px 40px;
     background-size: 150px auto;
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -199,6 +199,25 @@ a {
 
       &:hover {
         color: #777777;
+      }
+    }
+
+    .smash-bro-character-image {
+      width: 140px;
+      height: 140px;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      border-radius: 50%;
+      background: #080f14;
+      border: 8px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: auto;
+        height: 90px;
       }
     }
   }
@@ -246,10 +265,20 @@ a {
   height: calc(100% / @aspect-ratio);
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 8px;
   grid-row-gap: 8px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 
   .grid-item {
     @bg-gradient: linear-gradient(20deg, #37a7ea 0%, #97d1f2 70%);
@@ -372,6 +401,20 @@ a {
     &:nth-child(15) {
       background-image: url(assets/characters/Bowser.png), @bg-gradient;
       background-position: center 20%;
+    }
+
+    &:nth-child(16) {
+      background-image: url(assets/characters/Inkling.png), @bg-gradient;
+      background-position: center 20%;
+    }
+
+    &:nth-child(17) {
+      background-image: url(assets/characters/Donkey-Kong.png), @bg-gradient;
+      background-position: center 20%;
+    }
+
+    &:nth-child(18) {
+      background-image: url(assets/characters/Piranha-Plant.png), @bg-gradient;
     }
   }
 }

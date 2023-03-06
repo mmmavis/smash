@@ -14,6 +14,9 @@
   { "name": "Wii Fit Trainer" },
   { "name": "Villager" },
   { "name": "Bowser" },
+  { "name": "Inkling" },
+  { "name": "Donkey Kong" },
+  { "name": "Piranha Plant" },
 
 
   { "name": "Snake" },
@@ -25,7 +28,6 @@
   { "name": "Ganondorf" },
   { "name": "Young Link" },
   { "name": "Marth" },
-  { "name": "Inkling" },
   { "name": "Chrom" },
   { "name": "Hero" },
   { "name": "Roy" },

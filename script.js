@@ -241,10 +241,10 @@ $(".grid-item").click(function () {
   //   "url(assets/characters/" + char.replace(/\s+/g, "-") + ".png)"
   // );
   $("#character-selected").text(char);
-  if ($("#modal h2 img").length != 0) {
-    $("#modal h2 img").attr("src", charImgSrc);
+  if ($("#modal .smash-bro-character-image img").length != 0) {
+    $("#modal .smash-bro-character-image img").attr("src", charImgSrc);
   } else {
-    $("<img src='" + charImgSrc + "'>").insertAfter("#character-selected");
+    $(".smash-bro-character-image").html("<img src='" + charImgSrc + "'>");
   }
 
   showModal();

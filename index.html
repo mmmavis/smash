@@ -16,8 +16,8 @@
     <link rel="apple-touch-icon" type="image/png" sizes="360x360" href="favicon-on-white.png">
     <link rel="icon" type="image/png" sizes="90x90" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Climate+Crisis&family=Playfair+Display&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Climate+Crisis&family=Playfair+Display&family=Tilt+Warp&display=swap" rel="stylesheet">
     <link rel="stylesheet/less" type="text/css" href="style.less" />
     <script type="text/javascript" src="lib/less.min.js" ></script>
     <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
@@ -32,7 +32,7 @@
           </video>
         {{else if imgSrcIsWebpage}}
           <a href="{{imgSrc}}" target="_blank" class="see-link">
-            (see link)
+            (See link)
           </a>
         {{else if imgSrc}}
           <div class="img-container">
@@ -62,7 +62,7 @@
             <input name="imgSrc" type="text" placeholder="Image url (url should include file extension)" />
             <small>
               [Tip] Find the image you want online, right click, select "copy image location", then paste the url here.
-              Giphy tutorial see <a href="giphy-tutorial.gif">here</a>
+              Giphy tutorial see <a href="giphy-tutorial.mov" target="_blank">here</a>
             </small>
           </fieldset>
           <fieldset>
@@ -99,12 +99,16 @@
             <div class="grid-item" data-character="Wii Fit Trainer"> </div>
             <div class="grid-item" data-character="Villager"> </div>
             <div class="grid-item" data-character="Bowser"> </div>
+            <div class="grid-item" data-character="Inkling"> </div>
+            <div class="grid-item" data-character="Donkey Kong"> </div>
+            <div class="grid-item" data-character="Piranha Plant"> </div>
           </div>
           <div id="credits">Images from https://www.smashbros.com</div>
         </div>
     </div>
     <div id="page-overlay">
       <div id="modal" data-character-selected="" data-modal-type="new">
+        <div class="smash-bro-character-image"></div>
         <a href="" class="btn-close" aria-hidden="true">&times;</a>
         <div id="new-form-wrapper">
           <h2>You've selected <span id="character-selected"></span></h2>
